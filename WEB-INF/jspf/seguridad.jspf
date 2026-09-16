@@ -13,11 +13,10 @@
     List<String> rolesSesion= (List<String>) session.getAttribute("roles");
     String  nombreSesion    = (String)  session.getAttribute("nombre");
     String  correoSesion    = (String)  session.getAttribute("correo");
-    String  ctx             = request.getContextPath();
 
     // 1) Si no hay sesión activa, redirigir a login
     if (idUsuarioSesion == null) {
-        response.sendRedirect(ctx + "/login.jsp?error=sesion");
+        response.sendRedirect(request.getContextPath() + "/login.jsp?error=sesion");
         return;
     }
 
@@ -43,7 +42,7 @@
         }
 
         if (!autorizado) {
-            response.sendRedirect(ctx + "/landing.jsp?error=permiso");
+            response.sendRedirect(request.getContextPath() + "/landing.jsp?error=permiso");
             return;
         }
     }
