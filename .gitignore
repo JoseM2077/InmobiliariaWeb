@@ -1,0 +1,9 @@
+# Archivos compilados y librerías
+*.class
+WEB-INF/lib/*.jar
+build/
+dist/
+nbproject/private/
+.vscode/
+.idea/
+*.log
