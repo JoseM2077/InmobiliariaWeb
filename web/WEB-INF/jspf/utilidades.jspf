@@ -1,0 +1,125 @@
+<%--
+  utilidades.jspf - Métodos auxiliares y de seguridad reutilizables
+  Proyecto: InmobiliariaWeb
+  Inclusión estática: <%@ include file="/WEB-INF/jspf/utilidades.jspf" %>
+--%>
+<%@ page import="java.security.MessageDigest, java.text.NumberFormat, java.util.Locale" %>
+<%!
+    /**
+     * Cifra un texto mediante el algoritmo SHA-256 y retorna su representación hexadecimal en minúsculas.
+     */
+    public String sha256(String texto) {
+        if (texto == null) return "";
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] bytes = md.digest(texto.getBytes("UTF-8"));
+            StringBuilder sb = new StringBuilder();
+            for (byte b : bytes) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (Exception ex) {
+            throw new RuntimeException("Error al calcular hash SHA-256", ex);
+        }
+    }
+
+    /**
+     * Aplica salt 'usuario:clave' antes de cifrar con SHA-256.
+     * En el sistema, el identificador único es el correo o username.
+     */
+    public String claveCifrada(String usuario, String clave) {
+        if (usuario == null) usuario = "";
+        if (clave == null) clave = "";
+        return sha256(usuario.trim() + ":" + clave);
+    }
+
+    /**
+     * Formatea un valor numérico como moneda de curso legal colombiana (COP):
+     * Ej: 580000000 -> "$ 580.000.000"
+     */
+    public String pesos(double valor) {
+        NumberFormat nf = NumberFormat.getInstance(new Locale("es", "CO"));
+        nf.setMaximumFractionDigits(0);
+        return "$ " + nf.format(valor);
+    }
+
+    /**
+     * Parsea un String a entero con valor por defecto si es nulo o inválido.
+     */
+    public int aEntero(String valor, int porDefecto) {
+        if (valor == null) return porDefecto;
+        try {
+            return Integer.parseInt(valor.trim());
+        } catch (Exception ex) {
+            return porDefecto;
+        }
+    }
+
+    /**
+     * Parsea un String a double con valor por defecto si es nulo o inválido.
+     * Soporta coma o punto decimal.
+     */
+    public double aDoble(String valor, double porDefecto) {
+        if (valor == null) return porDefecto;
+        try {
+            return Double.parseDouble(valor.trim().replace(",", "."));
+        } catch (Exception ex) {
+            return porDefecto;
+        }
+    }
+
+    /**
+     * Escapa caracteres especiales de HTML para mitigar vulnerabilidades XSS.
+     */
+    public String esc(String texto) {
+        if (texto == null) return "";
+        return texto.replace("&", "&amp;")
+                    .replace("<", "&lt;")
+                    .replace(">", "&gt;")
+                    .replace("\"", "&quot;")
+                    .replace("'", "&#x27;");
+    }
+
+    /**
+     * Color de Bootstrap para estados de propiedades.
+     */
+    public String colorEstadoPropiedad(String estado) {
+        if (estado == null) return "secondary";
+        switch (estado.toUpperCase()) {
+            case "DISPONIBLE": return "success";
+            case "RESERVADA":  return "warning";
+            case "VENDIDA":    return "danger";
+            case "ARRENDADA":  return "info";
+            case "INACTIVA":   return "secondary";
+            default:           return "secondary";
+        }
+    }
+
+    /**
+     * Color de Bootstrap para estados de citas.
+     */
+    public String colorEstadoCita(String estado) {
+        if (estado == null) return "secondary";
+        switch (estado.toUpperCase()) {
+            case "SOLICITADA": return "warning";
+            case "CONFIRMADA": return "primary";
+            case "REALIZADA":  return "success";
+            case "CANCELADA":  return "danger";
+            default:           return "secondary";
+        }
+    }
+
+    /**
+     * Color de Bootstrap para estados de solicitudes.
+     */
+    public String colorEstadoSolicitud(String estado) {
+        if (estado == null) return "secondary";
+        switch (estado.toUpperCase()) {
+            case "PENDIENTE":   return "warning";
+            case "EN_REVISION": return "info";
+            case "APROBADA":    return "success";
+            case "RECHAZADA":   return "danger";
+            default:            return "secondary";
+        }
+    }
+%>

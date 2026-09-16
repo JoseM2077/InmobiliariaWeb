@@ -1,0 +1,57 @@
+<%--
+  conexion.jspf - Fragmento de conexión a la base de datos MySQL
+  Proyecto: InmobiliariaWeb (Programación Java EE - Modelo 1)
+  Esquema: inmobiliaria_db
+  Inclusión estática: <%@ include file="/WEB-INF/jspf/conexion.jspf" %>
+--%>
+<%@ page import="java.sql.*" %>
+<%!
+    /* ============ PARÁMETROS DE CONEXIÓN ============ */
+    public static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
+    public static final String DB_URL =
+        "jdbc:mysql://localhost:3306/inmobiliaria_db"
+      + "?useSSL=false&allowPublicKeyRetrieval=true"
+      + "&serverTimezone=America/Bogota&characterEncoding=UTF-8";
+    public static final String DB_USUARIO = "root";
+    public static final String DB_CLAVE   = "";
+
+    /**
+     * Abre y retorna una nueva conexión JDBC con la base de datos MySQL.
+     * Es responsabilidad del invocador cerrarla con cerrar(con).
+     */
+    public Connection abrirConexion() throws SQLException {
+        try {
+            Class.forName(DB_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            throw new SQLException(
+                "No se encontró el driver de MySQL (com.mysql.cj.jdbc.Driver). "
+              + "Verifique mysql-connector-j en WEB-INF/lib.", ex);
+        }
+        return DriverManager.getConnection(DB_URL, DB_USUARIO, DB_CLAVE);
+    }
+
+    /**
+     * Cierra de forma segura y en orden inverso cualquier recurso JDBC
+     * (ResultSet, Statement, PreparedStatement, Connection) sin propagar excepciones.
+     */
+    public void cerrar(AutoCloseable... recursos) {
+        for (int i = recursos.length - 1; i >= 0; i--) {
+            if (recursos[i] != null) {
+                try {
+                    recursos[i].close();
+                } catch (Exception ignorada) { }
+            }
+        }
+    }
+
+    /**
+     * Realiza rollback de la transacción en curso capturando cualquier error secundario.
+     */
+    public void deshacer(Connection con) {
+        if (con != null) {
+            try {
+                con.rollback();
+            } catch (SQLException ignorada) { }
+        }
+    }
+%>
