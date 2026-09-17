@@ -332,8 +332,8 @@ INSERT INTO usuario_rol (id_usuario, id_rol) VALUES
 -- 4) PERFIL (1:1 con usuario)
 -- ---------------------------------------------------------------------
 INSERT INTO perfil (id_usuario, nombres, apellidos, documento, telefono, direccion, foto) VALUES
-(1,  'Julián',    'Barney',   '1098123401', '3157890123', 'Calle 35 # 28-15, Bucaramanga', 'avatar1.png'),
-(2,  'Andrés',    'Salgado',  '1098123402', '3168901234', 'Carrera 27 # 45-20, Floridablanca', 'avatar2.png'),
+(1,  'Jose',      'Alvarez',  '1098123401', '3157890123', 'Calle 35 # 28-15, Bucaramanga', 'avatar1.png'),
+(2,  'Luis',      'Muñoz',    '1098123402', '3168901234', 'Carrera 27 # 45-20, Floridablanca', 'avatar2.png'),
 (3,  'Carlos',    'Mendoza',  '1098123403', '3179012345', 'Av. González Valencia # 52-10', 'avatar3.png'),
 (4,  'María',     'Herrera',  '1098123404', '3180123456', 'Calle 48 # 33-80, Cabecera', 'avatar4.png'),
 (5,  'Javier',    'Suárez',   '1098123405', '3191234567', 'Carrera 19 # 35-12, Centro', 'avatar5.png'),

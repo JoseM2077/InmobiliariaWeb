@@ -228,7 +228,9 @@
       <div class="col-lg-4 col-md-6">
         <div class="card card-propiedad h-100">
           <div class="card-img-wrapper">
-            <img src="<%= propImg %>" class="card-img-top" alt="<%= esc(propTitulo) %>">
+            <a href="<%= ctx %>/detalle_propiedad.jsp?id=<%= propId %>">
+              <img src="<%= propImg %>" class="card-img-top" alt="<%= esc(propTitulo) %>">
+            </a>
             <span class="badge badge-negocio <%= "VENTA".equalsIgnoreCase(propNegocio) ? "bg-primary" : "bg-success" %> text-white shadow-sm">
               <%= propNegocio %>
             </span>
@@ -247,7 +249,9 @@
               <i class="bi bi-geo-alt-fill text-danger me-1"></i> <%= esc(propCiudad) %> &middot; <%= esc(propDireccion) %>
             </div>
             <h5 class="card-title fw-bold text-navy mb-2">
-              <%= esc(propTitulo) %>
+              <a href="<%= ctx %>/detalle_propiedad.jsp?id=<%= propId %>" class="text-decoration-none text-navy">
+                <%= esc(propTitulo) %>
+              </a>
             </h5>
             <p class="card-text text-muted small flex-grow-1">
               <%= esc(propDesc.length() > 95 ? propDesc.substring(0, 95) + "..." : propDesc) %>
@@ -278,15 +282,9 @@
                 <span class="precio-inmueble"><%= pesos(propPrecio) %></span>
               </div>
               <div>
-                <% if (esVisitante) { %>
-                  <a href="<%= ctx %>/login.jsp" class="btn btn-outline-primary btn-sm fw-semibold">
-                    <i class="bi bi-eye"></i> Ver Detalle
-                  </a>
-                <% } else { %>
-                  <a href="<%= ctx %>/detalle_propiedad.jsp?id=<%= propId %>" class="btn btn-primary btn-sm fw-semibold">
-                    <i class="bi bi-eye"></i> Gestionar
-                  </a>
-                <% } %>
+                <a href="<%= ctx %>/detalle_propiedad.jsp?id=<%= propId %>" class="btn btn-outline-primary btn-sm fw-semibold">
+                  <i class="bi bi-eye"></i> Ver Detalle
+                </a>
               </div>
             </div>
 
