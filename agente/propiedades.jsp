@@ -294,177 +294,175 @@
 
 <!-- ================= MODAL: CREAR NUEVA PROPIEDAD ================= -->
 <div class="modal fade" id="modalNuevaPropiedad" tabindex="-1" aria-labelledby="modalNuevaPropiedadLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content rounded-4 border-0 shadow">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <form class="modal-content rounded-4 border-0 shadow" method="post" action="<%= ctx %>/agente/acciones_propiedad.jsp">
       
-      <div class="modal-header bg-navy text-white">
+      <div class="modal-header bg-navy text-white py-3 px-4 sticky-top">
         <h5 class="modal-title fw-bold" id="modalNuevaPropiedadLabel">
           <i class="bi bi-house-add-fill text-warning me-2"></i> Publicar Nuevo Inmueble
         </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form method="post" action="<%= ctx %>/agente/acciones_propiedad.jsp">
-        <input type="hidden" name="accion" value="crear">
-        
-        <div class="modal-body p-4">
-          <div class="row g-3">
-            
-            <div class="col-md-3">
-              <label for="codigo" class="form-label small fw-semibold text-secondary">Código del Inmueble *</label>
-              <input type="text" class="form-control" id="codigo" name="codigo" required placeholder="Ej: INM-011" maxlength="20">
-            </div>
-
-            <div class="col-md-3">
-              <label for="matricula_inmobiliaria" class="form-label small fw-semibold text-secondary">
-                Matr&iacute;cula Inmobiliaria (&Uacute;nica) *
-              </label>
-              <input type="text" class="form-control" id="matricula_inmobiliaria" name="matricula_inmobiliaria" 
-                     required placeholder="Ej: MAT-300-100211" maxlength="30">
-            </div>
-
-            <div class="col-md-6">
-              <label for="titulo" class="form-label small fw-semibold text-secondary">T&iacute;tulo Publicaci&oacute;n *</label>
-              <input type="text" class="form-control" id="titulo" name="titulo" required placeholder="Ej: Apartamento con Balc&oacute;n en Cabecera" maxlength="120">
-            </div>
-
-            <div class="col-md-3">
-              <label for="precio" class="form-label small fw-semibold text-secondary">Precio (COP) *</label>
-              <input type="number" class="form-control" id="precio" name="precio" required min="100000" step="100000" placeholder="Ej: 350000000">
-            </div>
-
-            <div class="col-md-3">
-              <label for="tipo_negocio" class="form-label small fw-semibold text-secondary">Tipo de Negocio *</label>
-              <select class="form-select" id="tipo_negocio" name="tipo_negocio" required>
-                <option value="VENTA">Venta</option>
-                <option value="ARRIENDO">Arriendo</option>
-              </select>
-            </div>
-
-            <div class="col-md-3">
-              <label for="id_ciudad" class="form-label small fw-semibold text-secondary">Ciudad *</label>
-              <select class="form-select" id="id_ciudad" name="id_ciudad" required>
-                <option value="">Seleccione Ciudad...</option>
-                <% 
-                  for (String[] c : listaCiudades) { 
-                %>
-                  <option value="<%= c[0] %>">
-                    <%= esc(c[1]) %> (<%= esc(c[2]) %>)
-                  </option>
-                <% } %>
-              </select>
-            </div>
-
-            <div class="col-md-3">
-              <label for="id_tipo" class="form-label small fw-semibold text-secondary">Tipo de Inmueble *</label>
-              <select class="form-select" id="id_tipo" name="id_tipo" required>
-                <option value="">Seleccione Tipo...</option>
-                <% 
-                  for (String[] t : listaTipos) { 
-                %>
-                  <option value="<%= t[0] %>">
-                    <%= esc(t[1]) %>
-                  </option>
-                <% } %>
-              </select>
-            </div>
-
-            <div class="col-md-8">
-              <label for="direccion" class="form-label small fw-semibold text-secondary">Direcci&oacute;n Exacta *</label>
-              <input type="text" class="form-control" id="direccion" name="direccion" required placeholder="Ej: Calle 48 # 33-80">
-            </div>
-
-            <div class="col-md-2">
-              <label for="area_m2" class="form-label small fw-semibold text-secondary">&Aacute;rea (m&sup2;) *</label>
-              <input type="number" class="form-control" id="area_m2" name="area_m2" required min="1" step="0.5" placeholder="85">
-            </div>
-
-            <div class="col-md-2">
-              <label for="estrato" class="form-label small fw-semibold text-secondary">Estrato *</label>
-              <select class="form-select" id="estrato" name="estrato">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4" selected>4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-              </select>
-            </div>
-
-            <div class="col-md-3">
-              <label for="habitaciones" class="form-label small fw-semibold text-secondary">Habitaciones</label>
-              <input type="number" class="form-control" id="habitaciones" name="habitaciones" min="0" value="3">
-            </div>
-
-            <div class="col-md-3">
-              <label for="banos" class="form-label small fw-semibold text-secondary">Ba&ntilde;os</label>
-              <input type="number" class="form-control" id="banos" name="banos" min="0" value="2">
-            </div>
-
-            <div class="col-md-3">
-              <label for="parqueaderos" class="form-label small fw-semibold text-secondary">Parqueaderos</label>
-              <input type="number" class="form-control" id="parqueaderos" name="parqueaderos" min="0" value="1">
-            </div>
-
-            <div class="col-md-3 d-flex align-items-center pt-4">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="destacada" name="destacada" value="1">
-                <label class="form-check-label small fw-semibold text-navy" for="destacada">
-                  Inmueble Destacado en Vitrina
-                </label>
-              </div>
-            </div>
-
-            <div class="col-12">
-              <label for="url_imagen" class="form-label small fw-semibold text-secondary">URL de Fotograf&iacute;a Principal</label>
-              <input type="url" class="form-control" id="url_imagen" name="url_imagen" placeholder="https://images.unsplash.com/photo-...">
-              <div class="form-text">Si no ingresa una URL, el sistema asignar&aacute; una imagen de alta calidad por defecto.</div>
-            </div>
-
-            <div class="col-12">
-              <label for="descripcion" class="form-label small fw-semibold text-secondary">Descripci&oacute;n Detallada *</label>
-              <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required placeholder="Describa distribuci&oacute;n, acabados, cercan&iacute;a a v&iacute;as principales..."></textarea>
-            </div>
-
-            <!-- SELECCIÓN MÚLTIPLE DE CARACTERÍSTICAS (Relación N:M) -->
-            <div class="col-12">
-              <label class="form-label small fw-bold text-navy mb-2">
-                <i class="bi bi-check2-square text-primary me-1"></i> Caracter&iacute;sticas y Amenidades (Relaci&oacute;n N:M)
-              </label>
-              <div class="p-3 border rounded-3 bg-light">
-                <div class="row g-2">
-                  <% 
-                    for (String[] car : listaCaracts) { 
-                      String carId = car[0];
-                      String carNom = car[1];
-                      String carIco = car[2];
-                  %>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="caracteristicas" value="<%= carId %>" id="car_<%= carId %>">
-                        <label class="form-check-label small" for="car_<%= carId %>">
-                          <i class="bi <%= esc(carIco) %> text-primary me-1"></i> <%= esc(carNom) %>
-                        </label>
-                      </div>
-                    </div>
-                  <% } %>
-                </div>
-              </div>
-            </div>
-
+      <input type="hidden" name="accion" value="crear">
+      
+      <div class="modal-body p-4 custom-scroll" style="max-height: calc(85vh - 135px); overflow-y: auto;">
+        <div class="row g-3">
+          
+          <div class="col-md-3">
+            <label for="codigo" class="form-label small fw-semibold text-secondary">Código del Inmueble *</label>
+            <input type="text" class="form-control" id="codigo" name="codigo" required placeholder="Ej: INM-011" maxlength="20">
           </div>
+
+          <div class="col-md-3">
+            <label for="matricula_inmobiliaria" class="form-label small fw-semibold text-secondary">
+              Matr&iacute;cula Inmobiliaria (&Uacute;nica) *
+            </label>
+            <input type="text" class="form-control" id="matricula_inmobiliaria" name="matricula_inmobiliaria" 
+                   required placeholder="Ej: MAT-300-100211" maxlength="30">
+          </div>
+
+          <div class="col-md-6">
+            <label for="titulo" class="form-label small fw-semibold text-secondary">T&iacute;tulo Publicaci&oacute;n *</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" required placeholder="Ej: Apartamento con Balc&oacute;n en Cabecera" maxlength="120">
+          </div>
+
+          <div class="col-md-3">
+            <label for="precio" class="form-label small fw-semibold text-secondary">Precio (COP) *</label>
+            <input type="number" class="form-control" id="precio" name="precio" required min="100000" step="100000" placeholder="Ej: 350000000">
+          </div>
+
+          <div class="col-md-3">
+            <label for="tipo_negocio" class="form-label small fw-semibold text-secondary">Tipo de Negocio *</label>
+            <select class="form-select" id="tipo_negocio" name="tipo_negocio" required>
+              <option value="VENTA">Venta</option>
+              <option value="ARRIENDO">Arriendo</option>
+            </select>
+          </div>
+
+          <div class="col-md-3">
+            <label for="id_ciudad" class="form-label small fw-semibold text-secondary">Ciudad *</label>
+            <select class="form-select" id="id_ciudad" name="id_ciudad" required>
+              <option value="">Seleccione Ciudad...</option>
+              <% 
+                for (String[] c : listaCiudades) { 
+              %>
+                <option value="<%= c[0] %>">
+                  <%= esc(c[1]) %> (<%= esc(c[2]) %>)
+                </option>
+              <% } %>
+            </select>
+          </div>
+
+          <div class="col-md-3">
+            <label for="id_tipo" class="form-label small fw-semibold text-secondary">Tipo de Inmueble *</label>
+            <select class="form-select" id="id_tipo" name="id_tipo" required>
+              <option value="">Seleccione Tipo...</option>
+              <% 
+                for (String[] t : listaTipos) { 
+              %>
+                <option value="<%= t[0] %>">
+                  <%= esc(t[1]) %>
+                </option>
+              <% } %>
+            </select>
+          </div>
+
+          <div class="col-md-8">
+            <label for="direccion" class="form-label small fw-semibold text-secondary">Direcci&oacute;n Exacta *</label>
+            <input type="text" class="form-control" id="direccion" name="direccion" required placeholder="Ej: Calle 48 # 33-80">
+          </div>
+
+          <div class="col-md-2">
+            <label for="area_m2" class="form-label small fw-semibold text-secondary">&Aacute;rea (m&sup2;) *</label>
+            <input type="number" class="form-control" id="area_m2" name="area_m2" required min="1" step="0.5" placeholder="85">
+          </div>
+
+          <div class="col-md-2">
+            <label for="estrato" class="form-label small fw-semibold text-secondary">Estrato *</label>
+            <select class="form-select" id="estrato" name="estrato">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4" selected>4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </div>
+
+          <div class="col-md-3">
+            <label for="habitaciones" class="form-label small fw-semibold text-secondary">Habitaciones</label>
+            <input type="number" class="form-control" id="habitaciones" name="habitaciones" min="0" value="3">
+          </div>
+
+          <div class="col-md-3">
+            <label for="banos" class="form-label small fw-semibold text-secondary">Ba&ntilde;os</label>
+            <input type="number" class="form-control" id="banos" name="banos" min="0" value="2">
+          </div>
+
+          <div class="col-md-3">
+            <label for="parqueaderos" class="form-label small fw-semibold text-secondary">Parqueaderos</label>
+            <input type="number" class="form-control" id="parqueaderos" name="parqueaderos" min="0" value="1">
+          </div>
+
+          <div class="col-md-3 d-flex align-items-center pt-4">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="destacada" name="destacada" value="1">
+              <label class="form-check-label small fw-semibold text-navy" for="destacada">
+                Inmueble Destacado en Vitrina
+              </label>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="url_imagen" class="form-label small fw-semibold text-secondary">URL de Fotograf&iacute;a Principal</label>
+            <input type="url" class="form-control" id="url_imagen" name="url_imagen" placeholder="https://images.unsplash.com/photo-...">
+            <div class="form-text">Si no ingresa una URL, el sistema asignar&aacute; una imagen de alta calidad por defecto.</div>
+          </div>
+
+          <div class="col-12">
+            <label for="descripcion" class="form-label small fw-semibold text-secondary">Descripci&oacute;n Detallada *</label>
+            <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required placeholder="Describa distribuci&oacute;n, acabados, cercan&iacute;a a v&iacute;as principales..."></textarea>
+          </div>
+
+          <!-- SELECCIÓN MÚLTIPLE DE CARACTERÍSTICAS (Relación N:M) -->
+          <div class="col-12">
+            <label class="form-label small fw-bold text-navy mb-2">
+              <i class="bi bi-check2-square text-primary me-1"></i> Caracter&iacute;sticas y Amenidades (Relaci&oacute;n N:M)
+            </label>
+            <div class="p-3 border rounded-3 bg-light custom-scroll" style="max-height: 180px; overflow-y: auto;">
+              <div class="row g-2">
+                <% 
+                  for (String[] car : listaCaracts) { 
+                    String carId = car[0];
+                    String carNom = car[1];
+                    String carIco = car[2];
+                %>
+                  <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="caracteristicas" value="<%= carId %>" id="car_<%= carId %>">
+                      <label class="form-check-label small" for="car_<%= carId %>">
+                        <i class="bi <%= esc(carIco) %> text-primary me-1"></i> <%= esc(carNom) %>
+                      </label>
+                    </div>
+                  </div>
+                <% } %>
+              </div>
+            </div>
+            <div class="form-text small">Puede desplazarse dentro de este recuadro para seleccionar m&uacute;ltiples amenidades.</div>
+          </div>
+
         </div>
+      </div>
 
-        <div class="modal-footer bg-light">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-warning fw-bold text-dark px-4 shadow-sm">
-            <i class="bi bi-cloud-arrow-up-fill me-1"></i> Guardar y Publicar Inmueble
-          </button>
-        </div>
+      <div class="modal-footer bg-light py-3 px-4 sticky-bottom">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-warning fw-bold text-dark px-4 shadow-sm">
+          <i class="bi bi-cloud-arrow-up-fill me-1"></i> Guardar y Publicar Inmueble
+        </button>
+      </div>
 
-      </form>
-
-    </div>
+    </form>
   </div>
 </div>
 
