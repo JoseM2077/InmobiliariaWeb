@@ -83,14 +83,14 @@
       <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
         <div>
           <span class="badge text-bg-success px-3 py-1 mb-2">Rol Cliente</span>
-          <h2 class="fw-bold text-navy mb-1">¡Hola, <%= esc(nombreSesion) %>!</h2>
+          <h2 class="fw-bold text-navy mb-1">&iexcl;Hola, <%= esc(nombreSesion) %>!</h2>
           <p class="text-muted mb-0">
-            <i class="bi bi-person-badge text-success me-1"></i> Bienvenido a su panel de gestión inmobiliaria personal.
+            <i class="bi bi-person-badge text-success me-1"></i> Bienvenido a su panel de gesti&oacute;n inmobiliaria personal.
           </p>
         </div>
         <div class="d-flex gap-2">
           <a href="<%= ctx %>/landing.jsp#catalogo" class="btn btn-warning fw-semibold shadow-sm">
-            <i class="bi bi-search me-1"></i> Explorar Catálogo
+            <i class="bi bi-search me-1"></i> Explorar Cat&aacute;logo
           </a>
         </div>
       </div>
@@ -149,7 +149,7 @@
           <i class="bi bi-buildings-fill"></i>
         </div>
         <div>
-          <h6 class="text-muted small mb-1">Inmuebles en Catálogo</h6>
+          <h6 class="text-muted small mb-1">Inmuebles en Cat&aacute;logo</h6>
           <h3 class="fw-bold text-navy mb-0"><%= totalDisponibles %></h3>
         </div>
       </div>
@@ -165,7 +165,7 @@
     <div class="card border-0 shadow-sm rounded-4 bg-white p-4 h-100">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="fw-bold text-navy mb-0">
-          <i class="bi bi-calendar-event text-primary me-2"></i> Mis Próximas Visitas Agendadas
+          <i class="bi bi-calendar-event text-primary me-2"></i> Mis Pr&oacute;ximas Visitas Agendadas
         </h5>
       </div>
 
@@ -213,7 +213,7 @@
               <tr>
                 <td colspan="4" class="text-center py-4 text-muted">
                   <i class="bi bi-calendar-x display-6 d-block mb-2 text-secondary"></i>
-                  Aún no tiene visitas agendadas. ¡Explore el catálogo y agende su primera cita!
+                  A&uacute;n no tiene visitas agendadas. &iexcl;Explore el cat&aacute;logo y agende su primera cita!
                 </td>
               </tr>
             <% } %>
@@ -264,7 +264,7 @@
         <% if (!hayFavs) { %>
           <div class="text-center py-4 text-muted">
             <i class="bi bi-bookmark-heart display-6 d-block mb-2 text-secondary"></i>
-            No ha guardado ningún inmueble como favorito todavía.
+            No ha guardado ning&uacute;n inmueble como favorito todav&iacute;a.
           </div>
         <% } %>
       </div>

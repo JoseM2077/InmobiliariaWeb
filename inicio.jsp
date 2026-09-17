@@ -95,14 +95,14 @@
           <span class="badge <%= "ADMIN".equalsIgnoreCase(rolSesion) ? "text-bg-danger" : ("AGENTE".equalsIgnoreCase(rolSesion) ? "text-bg-primary" : "text-bg-success") %> px-3 py-1 mb-2">
             <%= rolSesion %>
           </span>
-          <h2 class="fw-bold text-navy mb-1">¡Bienvenido(a), <%= esc(nombreSesion) %>!</h2>
+          <h2 class="fw-bold text-navy mb-1">&iexcl;Bienvenido(a), <%= esc(nombreSesion) %>!</h2>
           <p class="text-muted mb-0">
-            <i class="bi bi-calendar-check me-1"></i> Sesión iniciada con <code><%= esc(correoSesion) %></code>
+            <i class="bi bi-calendar-check me-1"></i> Sesi&oacute;n iniciada con <code><%= esc(correoSesion) %></code>
           </p>
         </div>
         <div>
           <a href="<%= ctx %>/landing.jsp#catalogo" class="btn btn-warning fw-semibold shadow-sm">
-            <i class="bi bi-search me-1"></i> Explorar Catálogo Público
+            <i class="bi bi-search me-1"></i> Explorar Cat&aacute;logo P&uacute;blico
           </a>
         </div>
       </div>
@@ -147,7 +147,7 @@
             <i class="bi bi-calendar-week-fill"></i>
           </div>
           <div>
-            <h6 class="text-muted small mb-1">Citas en Trámite</h6>
+            <h6 class="text-muted small mb-1">Citas en Tr&aacute;mite</h6>
             <h3 class="fw-bold text-navy mb-0"><%= contador3 %></h3>
           </div>
         </div>
@@ -255,7 +255,7 @@
             <i class="bi bi-file-text-fill"></i>
           </div>
           <div>
-            <h6 class="text-muted small mb-1">Trámites Radicados</h6>
+            <h6 class="text-muted small mb-1">Tr&aacute;mites Radicados</h6>
             <h3 class="fw-bold text-navy mb-0"><%= contador3 %></h3>
           </div>
         </div>
@@ -283,27 +283,27 @@
   <div class="col-lg-8">
     <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
       <h5 class="fw-bold text-navy mb-3">
-        <i class="bi bi-diagram-3-fill text-primary me-2"></i> Módulos Disponibles en Sprint 1
+        <i class="bi bi-diagram-3-fill text-primary me-2"></i> M&oacute;dulos Disponibles
       </h5>
       <p class="text-muted small mb-4">
-        Este entorno cuenta con la base de datos normalizada en 3FN, autenticación segura mediante SHA-256 con salt, 
-        control estricto de acceso por roles y catálogo público dinámico.
+        Este entorno cuenta con la base de datos normalizada en 3FN, autenticaci&oacute;n segura mediante SHA-256 con salt, 
+        control estricto de acceso por roles y cat&aacute;logo p&uacute;blico din&aacute;mico.
       </p>
 
       <div class="row g-3">
         <div class="col-md-6">
           <div class="p-3 border rounded-3 bg-light">
-            <h6 class="fw-bold text-navy mb-1"><i class="bi bi-search text-primary me-1"></i> Catálogo Público</h6>
-            <p class="text-muted small mb-2">Consulte inmuebles por ciudad, tipo y precio con vista de fotos y datos de matrícula.</p>
+            <h6 class="fw-bold text-navy mb-1"><i class="bi bi-search text-primary me-1"></i> Cat&aacute;logo P&uacute;blico</h6>
+            <p class="text-muted small mb-2">Consulte inmuebles por ciudad, tipo y precio con vista de fotos y datos de matr&iacute;cula.</p>
             <a href="<%= ctx %>/landing.jsp#catalogo" class="btn btn-sm btn-outline-primary">Ver Inmuebles</a>
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="p-3 border rounded-3 bg-light">
-            <h6 class="fw-bold text-navy mb-1"><i class="bi bi-person-circle text-primary me-1"></i> Sesión y Seguridad</h6>
+            <h6 class="fw-bold text-navy mb-1"><i class="bi bi-person-circle text-primary me-1"></i> Sesi&oacute;n y Seguridad</h6>
             <p class="text-muted small mb-2">Su rol actual es <strong><%= rolSesion %></strong> con permisos validados en el servidor.</p>
-            <a href="<%= ctx %>/logout.jsp" class="btn btn-sm btn-outline-danger">Cerrar Sesión</a>
+            <a href="<%= ctx %>/logout.jsp" class="btn btn-sm btn-outline-danger">Cerrar Sesi&oacute;n</a>
           </div>
         </div>
       </div>
@@ -316,15 +316,15 @@
         <i class="bi bi-info-circle-fill text-warning me-2"></i> Datos del Proyecto
       </h5>
       <ul class="list-unstyled small text-muted">
-        <li class="mb-2"><strong>Asignatura:</strong> Programación Web Java</li>
-        <li class="mb-2"><strong>Institución:</strong> UTS Santander</li>
+        <li class="mb-2"><strong>Asignatura:</strong> Programaci&oacute;n Web Java</li>
+        <li class="mb-2"><strong>Instituci&oacute;n:</strong> UTS Santander</li>
         <li class="mb-2"><strong>Arquitectura:</strong> JSP + JSPF + JDBC</li>
         <li class="mb-2"><strong>Motor BD:</strong> MySQL 8 (inmobiliaria_db)</li>
-        <li class="mb-2"><strong>Contraseña Cifrada:</strong> SHA-256 (salt correo:clave)</li>
+        <li class="mb-2"><strong>Contrase&ntilde;a Cifrada:</strong> SHA-256 (salt correo:clave)</li>
       </ul>
       <hr>
       <div class="text-center">
-        <span class="badge bg-success-subtle text-success px-3 py-2 fw-semibold">Sprint 1 Culminado Exitosamente</span>
+        <span class="badge bg-success-subtle text-success px-3 py-2 fw-semibold">Plataforma Operativa 100%</span>
       </div>
     </div>
   </div>

@@ -10,20 +10,20 @@
     String msg   = request.getParameter("msg");
 
     String mensajeError = null;
-    if ("clave".equals(error))    mensajeError = "Correo electrónico o contraseña incorrectos.";
-    if ("sesion".equals(error))   mensajeError = "Su sesión ha expirado o requiere autenticación para ingresar.";
-    if ("vacio".equals(error))    mensajeError = "Por favor ingrese tanto el correo electrónico como la contraseña.";
+    if ("clave".equals(error))    mensajeError = "Correo electr&oacute;nico o contrase&ntilde;a incorrectos.";
+    if ("sesion".equals(error))   mensajeError = "Su sesi&oacute;n ha expirado o requiere autenticaci&oacute;n para ingresar.";
+    if ("vacio".equals(error))    mensajeError = "Por favor ingrese tanto el correo electr&oacute;nico como la contrase&ntilde;a.";
     if ("inactivo".equals(error)) mensajeError = "Su cuenta de usuario se encuentra temporalmente inactiva.";
 
     String mensajeExito = null;
-    if ("registrado".equals(msg)) mensajeExito = "¡Cuenta creada exitosamente! Ahora puede iniciar sesión con sus credenciales.";
+    if ("registrado".equals(msg)) mensajeExito = "&iexcl;Cuenta creada exitosamente! Ahora puede iniciar sesi&oacute;n con sus credenciales.";
 %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Iniciar Sesión | Inmobiliaria Horizonte</title>
+    <title>Iniciar Sesi&oacute;n | Inmobiliaria Horizonte</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,14 +56,14 @@
 
           <% if (mensajeError != null) { %>
             <div class="alert alert-danger alert-dismissible fade show py-2 small" role="alert">
-              <i class="bi bi-exclamation-triangle-fill me-1"></i> <%= esc(mensajeError) %>
+              <i class="bi bi-exclamation-triangle-fill me-1"></i> <%= mensajeError %>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           <% } %>
 
           <% if (mensajeExito != null) { %>
             <div class="alert alert-success alert-dismissible fade show py-2 small" role="alert">
-              <i class="bi bi-check-circle-fill me-1"></i> <%= esc(mensajeExito) %>
+              <i class="bi bi-check-circle-fill me-1"></i> <%= mensajeExito %>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           <% } %>
@@ -73,7 +73,7 @@
             
             <div class="mb-3">
               <label class="form-label text-secondary small fw-semibold" for="correo">
-                Correo Electrónico
+                Correo Electr&oacute;nico
               </label>
               <div class="input-group">
                 <span class="input-group-text bg-light text-muted"><i class="bi bi-envelope"></i></span>
@@ -85,7 +85,7 @@
             <div class="mb-4">
               <div class="d-flex justify-content-between align-items-center">
                 <label class="form-label text-secondary small fw-semibold mb-0" for="clave">
-                  Contraseña
+                  Contrase&ntilde;a
                 </label>
                 <small class="text-muted">Prueba: <code>1234</code></small>
               </div>
@@ -103,7 +103,7 @@
           </form>
 
           <div class="border-top pt-3 text-center">
-            <p class="text-muted small mb-2">¿Aún no tienes una cuenta de cliente?</p>
+            <p class="text-muted small mb-2">&iquest;A&uacute;n no tienes una cuenta de cliente?</p>
             <a href="<%= ctx %>/registro.jsp" class="btn btn-outline-primary btn-sm w-100 fw-semibold">
               <i class="bi bi-person-plus"></i> Crear Cuenta de Cliente
             </a>
@@ -111,7 +111,7 @@
 
           <div class="mt-3 text-center">
             <a href="<%= ctx %>/landing.jsp" class="text-decoration-none text-muted small">
-              <i class="bi bi-arrow-left"></i> Volver a la página de inicio
+              <i class="bi bi-arrow-left"></i> Volver a la p&aacute;gina de inicio
             </a>
           </div>
 

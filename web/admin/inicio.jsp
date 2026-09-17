@@ -10,7 +10,7 @@
 <%@ include file="/WEB-INF/jspf/conexion.jspf" %>
 <%@ include file="/WEB-INF/jspf/utilidades.jspf" %>
 <%
-    String tituloPagina = "Panel de Administración";
+    String tituloPagina = "Panel de Administraci&oacute;n";
 
     Connection con = null;
     PreparedStatement psStats = null;
@@ -82,7 +82,7 @@
           <span class="badge text-bg-danger px-3 py-1 mb-2">Administrador General</span>
           <h2 class="fw-bold text-navy mb-1">Panel de Control del Sistema</h2>
           <p class="text-muted mb-0">
-            <i class="bi bi-shield-check text-danger me-1"></i> Supervisión de catálogos, cuentas de usuario, métricas globales y auditoría.
+            <i class="bi bi-shield-check text-danger me-1"></i> Supervisi&oacute;n de cat&aacute;logos, cuentas de usuario, m&eacute;tricas globales y auditor&iacute;a.
           </p>
         </div>
         <div class="d-flex gap-2">
@@ -90,7 +90,7 @@
             <i class="bi bi-houses me-1"></i> Ver Inmuebles
           </a>
           <a href="<%= ctx %>/landing.jsp" class="btn btn-warning fw-semibold shadow-sm">
-            <i class="bi bi-eye me-1"></i> Vista Pública
+            <i class="bi bi-eye me-1"></i> Vista P&uacute;blica
           </a>
         </div>
       </div>
@@ -98,7 +98,7 @@
   </div>
 </div>
 
-<!-- Métricas Globales -->
+<!-- M&eacute;tricas Globales -->
 <div class="row g-3 mb-4">
   <div class="col-sm-6 col-xl-2">
     <div class="card border-0 shadow-sm rounded-4 p-3 bg-white h-100 text-center">
@@ -244,7 +244,7 @@
       </div>
 
       <div class="mt-auto pt-3 border-top text-center">
-        <small class="text-muted">Gestión de Catálogos e Integridad Referencial 3FN</small>
+        <small class="text-muted">Gesti&oacute;n de Cat&aacute;logos e Integridad Referencial 3FN</small>
       </div>
     </div>
   </div>
@@ -254,7 +254,7 @@
 <%@ include file="/WEB-INF/jspf/pie.jspf" %>
 <%
     } catch (SQLException ex) {
-        out.println("<div class='alert alert-danger'>Error al cargar panel de administración: " + esc(ex.getMessage()) + "</div>");
+        out.println("<div class='alert alert-danger'>Error al cargar panel de administraci&oacute;n: " + esc(ex.getMessage()) + "</div>");
     } finally {
         cerrar(rsCiudades, psCiudades, rsUsuarios, psUsuarios, rsStats, psStats, con);
     }

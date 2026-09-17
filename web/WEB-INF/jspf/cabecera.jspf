@@ -4,6 +4,7 @@
   Roles soportados: VISITANTE (sin sesión), CLIENTE, AGENTE, ADMIN.
   Requiere antes: String tituloPagina = "Título";
 --%>
+<%@ page pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%
     String ctx = request.getContextPath();
@@ -45,7 +46,7 @@
         <i class="bi bi-buildings-fill text-warning fs-3"></i>
         <span>Inmobiliaria <span class="text-warning">Horizonte</span></span>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavbar" aria-controls="menuNavbar" aria-expanded="false" aria-label="Navegación">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavbar" aria-controls="menuNavbar" aria-expanded="false" aria-label="Navegaci&oacute;n">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -61,7 +62,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<%= ctx %>/landing.jsp#catalogo">
-              <i class="bi bi-search"></i> Catálogo de Inmuebles
+              <i class="bi bi-search"></i> Cat&aacute;logo de Inmuebles
             </a>
           </li>
           <li class="nav-item">
@@ -89,17 +90,17 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<%= ctx %>/cliente/citas.jsp">
+            <a class="nav-link" href="<%= ctx %>/cliente/agendar_cita.jsp">
               <i class="bi bi-calendar-check"></i> Mis Citas
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<%= ctx %>/cliente/solicitudes.jsp">
+            <a class="nav-link" href="<%= ctx %>/cliente/inicio.jsp">
               <i class="bi bi-file-earmark-text"></i> Mis Solicitudes
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<%= ctx %>/cliente/favoritos.jsp">
+            <a class="nav-link" href="<%= ctx %>/cliente/inicio.jsp">
               <i class="bi bi-heart-fill text-danger"></i> Favoritos
             </a>
           </li>
@@ -118,7 +119,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="<%= ctx %>/agente/propiedades.jsp"><i class="bi bi-list-ul"></i> Mis Propiedades</a></li>
-              <li><a class="dropdown-item" href="<%= ctx %>/agente/nueva_propiedad.jsp"><i class="bi bi-plus-circle"></i> Publicar Inmueble</a></li>
+              <li><a class="dropdown-item" href="<%= ctx %>/agente/propiedades.jsp#modalNuevaPropiedad" data-bs-toggle="modal" data-bs-target="#modalNuevaPropiedad"><i class="bi bi-plus-circle"></i> Publicar Inmueble</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -127,7 +128,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<%= ctx %>/agente/solicitudes.jsp">
+            <a class="nav-link" href="<%= ctx %>/agente/inicio.jsp">
               <i class="bi bi-folder-check"></i> Solicitudes Recibidas
             </a>
           </li>
@@ -141,22 +142,22 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<%= ctx %>/admin/usuarios.jsp">
+            <a class="nav-link" href="<%= ctx %>/admin/inicio.jsp">
               <i class="bi bi-people-fill"></i> Usuarios y Roles
             </a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-              <i class="bi bi-sliders"></i> Catálogos
+              <i class="bi bi-sliders"></i> Cat&aacute;logos
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="<%= ctx %>/admin/ciudades.jsp"><i class="bi bi-geo-alt"></i> Ciudades</a></li>
-              <li><a class="dropdown-item" href="<%= ctx %>/admin/tipos.jsp"><i class="bi bi-tag"></i> Tipos de Inmuebles</a></li>
-              <li><a class="dropdown-item" href="<%= ctx %>/admin/caracteristicas.jsp"><i class="bi bi-stars"></i> Características</a></li>
+              <li><a class="dropdown-item" href="<%= ctx %>/admin/reportes.jsp"><i class="bi bi-geo-alt"></i> Ciudades</a></li>
+              <li><a class="dropdown-item" href="<%= ctx %>/admin/reportes.jsp"><i class="bi bi-tag"></i> Tipos de Inmuebles</a></li>
+              <li><a class="dropdown-item" href="<%= ctx %>/admin/reportes.jsp"><i class="bi bi-stars"></i> Caracter&iacute;sticas</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<%= ctx %>/admin/propiedades.jsp">
+            <a class="nav-link" href="<%= ctx %>/agente/propiedades.jsp">
               <i class="bi bi-buildings"></i> Propiedades
             </a>
           </li>
@@ -173,7 +174,7 @@
       <div class="d-flex align-items-center gap-2">
         <% if (esVisitante) { %>
           <a href="<%= ctx %>/login.jsp" class="btn btn-outline-light btn-sm px-3">
-            <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+            <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesi&oacute;n
           </a>
           <a href="<%= ctx %>/registro.jsp" class="btn btn-warning btn-sm px-3 fw-semibold">
             <i class="bi bi-person-plus-fill"></i> Registrarse
@@ -182,25 +183,25 @@
           <div class="dropdown">
             <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
               <i class="bi bi-person-circle fs-5"></i>
-              <span><%= nombreCabecera %></span>
+              <span><%= esc(nombreCabecera) %></span>
               <span class="badge <%= "ADMIN".equalsIgnoreCase(rolCabecera) ? "text-bg-danger" : ("AGENTE".equalsIgnoreCase(rolCabecera) ? "text-bg-primary" : "text-bg-success") %>">
                 <%= rolCabecera %>
               </span>
             </button>
             <ul class="dropdown-menu dropdown-menu-end shadow">
               <li class="px-3 py-1 text-muted small">
-                <i class="bi bi-envelope"></i> <%= correoCabecera %>
+                <i class="bi bi-envelope"></i> <%= esc(correoCabecera) %>
               </li>
               <li><hr class="dropdown-divider"></li>
               <li>
-                <a class="dropdown-item" href="<%= ctx %>/perfil.jsp">
+                <a class="dropdown-item" href="<%= ctx %>/inicio.jsp">
                   <i class="bi bi-person-badge"></i> Mi Perfil
                 </a>
               </li>
               <li><hr class="dropdown-divider"></li>
               <li>
                 <a class="dropdown-item text-danger fw-semibold" href="<%= ctx %>/logout.jsp">
-                  <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                  <i class="bi bi-box-arrow-right"></i> Cerrar Sesi&oacute;n
                 </a>
               </li>
             </ul>

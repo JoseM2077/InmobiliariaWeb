@@ -169,7 +169,7 @@
 
       <div class="col-md-2">
         <label for="precioMax" class="form-label fw-semibold text-secondary small">
-          <i class="bi bi-cash-stack text-primary"></i> Presupuesto Máx.
+          <i class="bi bi-cash-stack text-primary"></i> Presupuesto M&aacute;x.
         </label>
         <input type="number" class="form-control" id="precioMax" name="precioMax" 
                placeholder="Ej: 500000000" value="<%= filtroPrecioMax > 0 ? (long)filtroPrecioMax : "" %>">
@@ -192,7 +192,7 @@
       <h2 class="fw-bold text-navy mb-1">
         <i class="bi bi-stars text-warning me-2"></i> Inmuebles Destacados y Disponibles
       </h2>
-      <p class="text-muted mb-0">Selección de propiedades verificadas con disponibilidad inmediata</p>
+      <p class="text-muted mb-0">Selecci&oacute;n de propiedades verificadas con disponibilidad inmediata</p>
     </div>
     <% if (filtroCiudad > 0 || filtroTipo > 0 || (filtroNegocio != null && !"TODOS".equalsIgnoreCase(filtroNegocio)) || filtroPrecioMax > 0) { %>
       <a href="<%= ctx %>/landing.jsp#catalogo" class="btn btn-outline-secondary btn-sm">
@@ -254,17 +254,17 @@
             </p>
 
             <div class="specs-inmueble mb-3">
-              <div class="specs-item" title="Área construida">
+              <div class="specs-item" title="&Aacute;rea construida">
                 <i class="bi bi-aspect-ratio text-primary"></i>
-                <span><%= (int)propArea %> m²</span>
+                <span><%= (int)propArea %> m&sup2;</span>
               </div>
               <div class="specs-item" title="Habitaciones">
                 <i class="bi bi-door-closed text-primary"></i>
                 <span><%= propHab %> Hab</span>
               </div>
-              <div class="specs-item" title="Baños">
+              <div class="specs-item" title="Ba&ntilde;os">
                 <i class="bi bi-droplet text-primary"></i>
-                <span><%= propBanos %> Baños</span>
+                <span><%= propBanos %> Ba&ntilde;os</span>
               </div>
               <div class="specs-item" title="Parqueaderos">
                 <i class="bi bi-p-circle text-primary"></i>
@@ -274,7 +274,7 @@
 
             <div class="d-flex justify-content-between align-items-center pt-2">
               <div>
-                <span class="text-muted small d-block">Valor inversión</span>
+                <span class="text-muted small d-block">Valor inversi&oacute;n</span>
                 <span class="precio-inmueble"><%= pesos(propPrecio) %></span>
               </div>
               <div>
@@ -283,7 +283,7 @@
                     <i class="bi bi-eye"></i> Ver Detalle
                   </a>
                 <% } else { %>
-                  <a href="<%= ctx %>/propiedad_detalle.jsp?id=<%= propId %>" class="btn btn-primary btn-sm fw-semibold">
+                  <a href="<%= ctx %>/detalle_propiedad.jsp?id=<%= propId %>" class="btn btn-primary btn-sm fw-semibold">
                     <i class="bi bi-eye"></i> Gestionar
                   </a>
                 <% } %>
@@ -292,8 +292,8 @@
 
           </div>
           <div class="card-footer bg-light border-0 px-4 pb-3 pt-0 text-muted small d-flex justify-content-between">
-            <span>Cód: <code><%= esc(propCodigo) %></code></span>
-            <span>Matrícula: <code><%= esc(rsProps.getString("matricula_inmobiliaria")) %></code></span>
+            <span>C&oacute;d: <code><%= esc(propCodigo) %></code></span>
+            <span>Matr&iacute;cula: <code><%= esc(rsProps.getString("matricula_inmobiliaria")) %></code></span>
           </div>
         </div>
       </div>
@@ -304,9 +304,9 @@
         <div class="p-5 bg-white rounded-4 shadow-sm">
           <i class="bi bi-building-slash display-3 text-muted"></i>
           <h4 class="mt-3 fw-bold text-navy">No encontramos inmuebles con los criterios seleccionados</h4>
-          <p class="text-muted">Intente cambiar la ciudad, ajustar el presupuesto o remover filtros de búsqueda.</p>
+          <p class="text-muted">Intente cambiar la ciudad, ajustar el presupuesto o remover filtros de b&uacute;squeda.</p>
           <a href="<%= ctx %>/landing.jsp#catalogo" class="btn btn-primary mt-2">
-            <i class="bi bi-arrow-repeat"></i> Ver Todo el Catálogo
+            <i class="bi bi-arrow-repeat"></i> Ver Todo el Cat&aacute;logo
           </a>
         </div>
       </div>

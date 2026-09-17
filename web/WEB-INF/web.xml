@@ -21,11 +21,13 @@
         <session-timeout>30</session-timeout>
     </session-config>
 
-    <!-- Todas las páginas JSP se procesan y emiten en UTF-8 -->
+    <!-- Todas las páginas JSP y fragmentos JSPF se procesan y emiten en UTF-8 -->
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>
+            <url-pattern>*.jspf</url-pattern>
             <page-encoding>UTF-8</page-encoding>
+            <default-content-type>text/html; charset=UTF-8</default-content-type>
             <trim-directive-whitespaces>true</trim-directive-whitespaces>
         </jsp-property-group>
     </jsp-config>

@@ -33,9 +33,9 @@
             
             error = "Todos los campos obligatorios deben ser diligenciados.";
         } else if (!clave.equals(clave2)) {
-            error = "Las contraseñas ingresadas no coinciden. Por favor verifíquelas.";
+            error = "Las contrase&ntilde;as ingresadas no coinciden. Por favor verif&iacute;quelas.";
         } else if (clave.length() < 4) {
-            error = "La contraseña debe tener al menos 4 caracteres.";
+            error = "La contrase&ntilde;a debe tener al menos 4 caracteres.";
         } else {
             // Datos limpios
             nombres   = nombres.trim();
@@ -116,11 +116,11 @@
                 deshacer(con);
                 String msgErr = exIntegridad.getMessage();
                 if (msgErr != null && (msgErr.contains("correo") || msgErr.contains("uq_usuario_correo"))) {
-                    error = "El correo electrónico '" + esc(correo) + "' ya se encuentra registrado en el sistema. Por favor inicie sesión o utilice otra cuenta de correo.";
+                    error = "El correo electr&oacute;nico '" + esc(correo) + "' ya se encuentra registrado en el sistema. Por favor inicie sesi&oacute;n o utilice otra cuenta de correo.";
                 } else if (msgErr != null && (msgErr.contains("documento") || msgErr.contains("uq_perfil_documento"))) {
-                    error = "El número de documento '" + esc(documento) + "' ya se encuentra registrado con otro usuario.";
+                    error = "El n&uacute;mero de documento '" + esc(documento) + "' ya se encuentra registrado con otro usuario.";
                 } else {
-                    error = "No fue posible registrar la cuenta debido a una restricción de datos duplicados: " + esc(exIntegridad.getMessage());
+                    error = "No fue posible registrar la cuenta debido a una restricci&oacute;n de datos duplicados: " + esc(exIntegridad.getMessage());
                 }
             } catch (SQLException exSql) {
                 deshacer(con);
@@ -165,7 +165,7 @@
           <div class="text-center mb-4">
             <span class="badge bg-success-subtle text-success px-3 py-1 fw-bold text-uppercase mb-2">Nuevo Cliente</span>
             <h3 class="fw-bold text-navy mb-1">Crea tu Cuenta</h3>
-            <p class="text-muted small">Regístrate para agendar citas, radicar documentos y guardar tus inmuebles favoritos.</p>
+            <p class="text-muted small">Reg&iacute;strate para agendar citas, radicar documentos y guardar tus inmuebles favoritos.</p>
           </div>
 
           <% if (error != null) { %>
@@ -191,7 +191,7 @@
               <div class="input-group">
                 <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
                 <input type="text" class="form-control" id="apellidos" name="apellidos" 
-                       required placeholder="Ej: Pérez Rueda" value="<%= esc(apellidos) %>">
+                       required placeholder="Ej: P&eacute;rez Rueda" value="<%= esc(apellidos) %>">
               </div>
             </div>
 
@@ -205,7 +205,7 @@
             </div>
 
             <div class="col-md-6">
-              <label for="telefono" class="form-label small fw-semibold text-secondary">Teléfono Móvil *</label>
+              <label for="telefono" class="form-label small fw-semibold text-secondary">Tel&eacute;fono M&oacute;vil *</label>
               <div class="input-group">
                 <span class="input-group-text bg-light"><i class="bi bi-telephone"></i></span>
                 <input type="tel" class="form-control" id="telefono" name="telefono" 
@@ -214,7 +214,7 @@
             </div>
 
             <div class="col-12">
-              <label for="direccion" class="form-label small fw-semibold text-secondary">Dirección Residencial</label>
+              <label for="direccion" class="form-label small fw-semibold text-secondary">Direcci&oacute;n Residencial</label>
               <div class="input-group">
                 <span class="input-group-text bg-light"><i class="bi bi-geo-alt"></i></span>
                 <input type="text" class="form-control" id="direccion" name="direccion" 
@@ -223,7 +223,7 @@
             </div>
 
             <div class="col-12">
-              <label for="correo" class="form-label small fw-semibold text-secondary">Correo Electrónico (Credencial de Ingreso) *</label>
+              <label for="correo" class="form-label small fw-semibold text-secondary">Correo Electr&oacute;nico (Credencial de Ingreso) *</label>
               <div class="input-group">
                 <span class="input-group-text bg-light"><i class="bi bi-envelope-at"></i></span>
                 <input type="email" class="form-control" id="correo" name="correo" 
@@ -232,20 +232,20 @@
             </div>
 
             <div class="col-md-6">
-              <label for="clave" class="form-label small fw-semibold text-secondary">Contraseña *</label>
+              <label for="clave" class="form-label small fw-semibold text-secondary">Contrase&ntilde;a *</label>
               <div class="input-group">
                 <span class="input-group-text bg-light"><i class="bi bi-key"></i></span>
                 <input type="password" class="form-control" id="clave" name="clave" 
-                       required placeholder="Mínimo 4 caracteres">
+                       required placeholder="M&iacute;nimo 4 caracteres">
               </div>
             </div>
 
             <div class="col-md-6">
-              <label for="clave2" class="form-label small fw-semibold text-secondary">Confirmar Contraseña *</label>
+              <label for="clave2" class="form-label small fw-semibold text-secondary">Confirmar Contrase&ntilde;a *</label>
               <div class="input-group">
                 <span class="input-group-text bg-light"><i class="bi bi-check-all"></i></span>
                 <input type="password" class="form-control" id="clave2" name="clave2" 
-                       required placeholder="Repita la contraseña">
+                       required placeholder="Repita la contrase&ntilde;a">
               </div>
             </div>
 
@@ -258,15 +258,15 @@
           </form>
 
           <div class="border-top pt-3 mt-4 text-center">
-            <p class="text-muted small mb-2">¿Ya tienes una cuenta registrada?</p>
+            <p class="text-muted small mb-2">&iquest;Ya tienes una cuenta registrada?</p>
             <a href="<%= ctx %>/login.jsp" class="btn btn-outline-primary btn-sm px-4 fw-semibold">
-              <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+              <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesi&oacute;n
             </a>
           </div>
 
           <div class="mt-3 text-center">
             <a href="<%= ctx %>/landing.jsp" class="text-decoration-none text-muted small">
-              <i class="bi bi-arrow-left"></i> Volver a la página principal
+              <i class="bi bi-arrow-left"></i> Volver a la p&aacute;gina principal
             </a>
           </div>
 

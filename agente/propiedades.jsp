@@ -35,12 +35,35 @@
         // 1) Carga de catálogos para filtros y formulario
         psCiudades = con.prepareStatement("SELECT id_ciudad, nombre, departamento FROM ciudad WHERE activo = 1 ORDER BY nombre");
         rsCiudades = psCiudades.executeQuery();
+        List<String[]> listaCiudades = new ArrayList<>();
+        while (rsCiudades.next()) {
+            listaCiudades.add(new String[]{
+                String.valueOf(rsCiudades.getInt("id_ciudad")),
+                rsCiudades.getString("nombre"),
+                rsCiudades.getString("departamento")
+            });
+        }
 
         psTipos = con.prepareStatement("SELECT id_tipo, nombre FROM tipo_propiedad WHERE activo = 1 ORDER BY nombre");
         rsTipos = psTipos.executeQuery();
+        List<String[]> listaTipos = new ArrayList<>();
+        while (rsTipos.next()) {
+            listaTipos.add(new String[]{
+                String.valueOf(rsTipos.getInt("id_tipo")),
+                rsTipos.getString("nombre")
+            });
+        }
 
         psCaracts = con.prepareStatement("SELECT id_caracteristica, nombre, icono FROM caracteristica WHERE activo = 1 ORDER BY nombre");
         rsCaracts = psCaracts.executeQuery();
+        List<String[]> listaCaracts = new ArrayList<>();
+        while (rsCaracts.next()) {
+            listaCaracts.add(new String[]{
+                String.valueOf(rsCaracts.getInt("id_caracteristica")),
+                rsCaracts.getString("nombre"),
+                rsCaracts.getString("icono")
+            });
+        }
 
         // 2) Consulta de inmuebles del agente (o todos si es ADMIN)
         StringBuilder sql = new StringBuilder();
@@ -111,10 +134,10 @@
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
       <div>
         <h3 class="fw-bold text-navy mb-1">
-          <i class="bi bi-buildings-fill text-primary me-2"></i> Gestión de Inmuebles
+          <i class="bi bi-buildings-fill text-primary me-2"></i> Gesti&oacute;n de Inmuebles
         </h3>
         <p class="text-muted small mb-0">
-          <%= "ADMIN".equalsIgnoreCase(rolSesion) ? "Supervisando catálogo global de propiedades" : "Inventario inmobiliario bajo su asesoría" %>
+          <%= "ADMIN".equalsIgnoreCase(rolSesion) ? "Supervisando cat&aacute;logo global de propiedades" : "Inventario inmobiliario bajo su asesor&iacute;a" %>
         </p>
       </div>
       <div>
@@ -127,7 +150,7 @@
     <!-- Filtros de Listado -->
     <form method="get" action="<%= ctx %>/agente/propiedades.jsp" class="row g-2 align-items-end pt-2 border-top">
       <div class="col-md-4">
-        <label for="q" class="form-label small text-secondary fw-semibold">Buscar por Título / Código / Matrícula</label>
+        <label for="q" class="form-label small text-secondary fw-semibold">Buscar por T&iacute;tulo / C&oacute;digo / Matr&iacute;cula</label>
         <div class="input-group input-group-sm">
           <span class="input-group-text bg-light"><i class="bi bi-search"></i></span>
           <input type="text" class="form-control" id="q" name="q" placeholder="Ej: MAT-300 o Cabecera" value="<%= esc(filtroTexto) %>">
@@ -139,12 +162,11 @@
         <select class="form-select form-select-sm" id="ciudad" name="ciudad">
           <option value="0">Todas las ciudades</option>
           <% 
-            rsCiudades.beforeFirst();
-            while (rsCiudades.next()) { 
-              int cId = rsCiudades.getInt("id_ciudad");
+            for (String[] c : listaCiudades) { 
+              int cId = Integer.parseInt(c[0]);
           %>
             <option value="<%= cId %>" <%= (filtroCiudad == cId ? "selected" : "") %>>
-              <%= esc(rsCiudades.getString("nombre")) %>
+              <%= esc(c[1]) %>
             </option>
           <% } %>
         </select>
@@ -177,12 +199,12 @@
         <thead class="table-navy bg-navy text-white">
           <tr>
             <th style="width: 80px;">Foto</th>
-            <th>Código / Matrícula</th>
-            <th>Título y Ubicación</th>
+            <th>C&oacute;digo / Matr&iacute;cula</th>
+            <th>T&iacute;tulo y Ubicaci&oacute;n</th>
             <th>Ciudad / Tipo</th>
             <th class="text-end">Precio</th>
             <th class="text-center">Estado</th>
-            <th class="text-center">Baja Lógica</th>
+            <th class="text-center">Baja L&oacute;gica</th>
             <th class="text-center">Acciones</th>
           </tr>
         </thead>
@@ -295,15 +317,15 @@
 
             <div class="col-md-3">
               <label for="matricula_inmobiliaria" class="form-label small fw-semibold text-secondary">
-                Matrícula Inmobiliaria (Única) *
+                Matr&iacute;cula Inmobiliaria (&Uacute;nica) *
               </label>
               <input type="text" class="form-control" id="matricula_inmobiliaria" name="matricula_inmobiliaria" 
                      required placeholder="Ej: MAT-300-100211" maxlength="30">
             </div>
 
             <div class="col-md-6">
-              <label for="titulo" class="form-label small fw-semibold text-secondary">Título Publicación *</label>
-              <input type="text" class="form-control" id="titulo" name="titulo" required placeholder="Ej: Apartamento con Balcón en Cabecera" maxlength="120">
+              <label for="titulo" class="form-label small fw-semibold text-secondary">T&iacute;tulo Publicaci&oacute;n *</label>
+              <input type="text" class="form-control" id="titulo" name="titulo" required placeholder="Ej: Apartamento con Balc&oacute;n en Cabecera" maxlength="120">
             </div>
 
             <div class="col-md-3">
@@ -324,11 +346,10 @@
               <select class="form-select" id="id_ciudad" name="id_ciudad" required>
                 <option value="">Seleccione Ciudad...</option>
                 <% 
-                  rsCiudades.beforeFirst();
-                  while (rsCiudades.next()) { 
+                  for (String[] c : listaCiudades) { 
                 %>
-                  <option value="<%= rsCiudades.getInt("id_ciudad") %>">
-                    <%= esc(rsCiudades.getString("nombre")) %> (<%= esc(rsCiudades.getString("departamento")) %>)
+                  <option value="<%= c[0] %>">
+                    <%= esc(c[1]) %> (<%= esc(c[2]) %>)
                   </option>
                 <% } %>
               </select>
@@ -339,23 +360,22 @@
               <select class="form-select" id="id_tipo" name="id_tipo" required>
                 <option value="">Seleccione Tipo...</option>
                 <% 
-                  rsTipos.beforeFirst();
-                  while (rsTipos.next()) { 
+                  for (String[] t : listaTipos) { 
                 %>
-                  <option value="<%= rsTipos.getInt("id_tipo") %>">
-                    <%= esc(rsTipos.getString("nombre")) %>
+                  <option value="<%= t[0] %>">
+                    <%= esc(t[1]) %>
                   </option>
                 <% } %>
               </select>
             </div>
 
             <div class="col-md-8">
-              <label for="direccion" class="form-label small fw-semibold text-secondary">Dirección Exacta *</label>
+              <label for="direccion" class="form-label small fw-semibold text-secondary">Direcci&oacute;n Exacta *</label>
               <input type="text" class="form-control" id="direccion" name="direccion" required placeholder="Ej: Calle 48 # 33-80">
             </div>
 
             <div class="col-md-2">
-              <label for="area_m2" class="form-label small fw-semibold text-secondary">Área (m²) *</label>
+              <label for="area_m2" class="form-label small fw-semibold text-secondary">&Aacute;rea (m&sup2;) *</label>
               <input type="number" class="form-control" id="area_m2" name="area_m2" required min="1" step="0.5" placeholder="85">
             </div>
 
@@ -377,7 +397,7 @@
             </div>
 
             <div class="col-md-3">
-              <label for="banos" class="form-label small fw-semibold text-secondary">Baños</label>
+              <label for="banos" class="form-label small fw-semibold text-secondary">Ba&ntilde;os</label>
               <input type="number" class="form-control" id="banos" name="banos" min="0" value="2">
             </div>
 
@@ -396,29 +416,28 @@
             </div>
 
             <div class="col-12">
-              <label for="url_imagen" class="form-label small fw-semibold text-secondary">URL de Fotografía Principal</label>
+              <label for="url_imagen" class="form-label small fw-semibold text-secondary">URL de Fotograf&iacute;a Principal</label>
               <input type="url" class="form-control" id="url_imagen" name="url_imagen" placeholder="https://images.unsplash.com/photo-...">
-              <div class="form-text">Si no ingresa una URL, el sistema asignará una imagen de alta calidad por defecto.</div>
+              <div class="form-text">Si no ingresa una URL, el sistema asignar&aacute; una imagen de alta calidad por defecto.</div>
             </div>
 
             <div class="col-12">
-              <label for="descripcion" class="form-label small fw-semibold text-secondary">Descripción Detallada *</label>
-              <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required placeholder="Describa distribución, acabados, cercanía a vías principales..."></textarea>
+              <label for="descripcion" class="form-label small fw-semibold text-secondary">Descripci&oacute;n Detallada *</label>
+              <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required placeholder="Describa distribuci&oacute;n, acabados, cercan&iacute;a a v&iacute;as principales..."></textarea>
             </div>
 
             <!-- SELECCIÓN MÚLTIPLE DE CARACTERÍSTICAS (Relación N:M) -->
             <div class="col-12">
               <label class="form-label small fw-bold text-navy mb-2">
-                <i class="bi bi-check2-square text-primary me-1"></i> Características y Amenidades (Relación N:M)
+                <i class="bi bi-check2-square text-primary me-1"></i> Caracter&iacute;sticas y Amenidades (Relaci&oacute;n N:M)
               </label>
               <div class="p-3 border rounded-3 bg-light">
                 <div class="row g-2">
                   <% 
-                    rsCaracts.beforeFirst();
-                    while (rsCaracts.next()) { 
-                      int carId = rsCaracts.getInt("id_caracteristica");
-                      String carNom = rsCaracts.getString("nombre");
-                      String carIco = rsCaracts.getString("icono");
+                    for (String[] car : listaCaracts) { 
+                      String carId = car[0];
+                      String carNom = car[1];
+                      String carIco = car[2];
                   %>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                       <div class="form-check">

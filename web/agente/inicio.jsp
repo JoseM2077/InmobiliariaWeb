@@ -84,7 +84,7 @@
       <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
         <div>
           <span class="badge text-bg-primary px-3 py-1 mb-2">Rol Agente Inmobiliario</span>
-          <h2 class="fw-bold text-navy mb-1">¡Bienvenido(a), Asesor(a) <%= esc(nombreSesion) %>!</h2>
+          <h2 class="fw-bold text-navy mb-1">&iexcl;Bienvenido(a), Asesor(a) <%= esc(nombreSesion) %>!</h2>
           <p class="text-muted mb-0">
             <i class="bi bi-briefcase me-1 text-primary"></i> Gestiona tu inventario inmobiliario, agenda de citas y solicitudes de clientes.
           </p>
@@ -177,11 +177,11 @@
         <table class="table table-hover align-middle mb-0">
           <thead class="table-light">
             <tr>
-              <th>Código / Título</th>
+              <th>C&oacute;digo / T&iacute;tulo</th>
               <th>Ciudad / Tipo</th>
               <th>Precio</th>
               <th>Estado</th>
-              <th>Acción</th>
+              <th>Acci&oacute;n</th>
             </tr>
           </thead>
           <tbody>
@@ -196,7 +196,7 @@
               <tr>
                 <td>
                   <div class="fw-bold text-navy"><%= esc(rsProps.getString("titulo")) %></div>
-                  <small class="text-muted">Cód: <code><%= esc(rsProps.getString("codigo")) %></code> &middot; Mat: <%= esc(rsProps.getString("matricula_inmobiliaria")) %></small>
+                  <small class="text-muted">C&oacute;d: <code><%= esc(rsProps.getString("codigo")) %></code> &middot; Mat: <%= esc(rsProps.getString("matricula_inmobiliaria")) %></small>
                 </td>
                 <td class="small">
                   <div><%= esc(rsProps.getString("ciudad")) %></div>
@@ -223,7 +223,7 @@
             <% if (!hayInmuebles) { %>
               <tr>
                 <td colspan="5" class="text-center py-4 text-muted">
-                  No tienes propiedades registradas aún. ¡Publica tu primer inmueble!
+                  No tienes propiedades registradas a&uacute;n. &iexcl;Publica tu primer inmueble!
                 </td>
               </tr>
             <% } %>
@@ -268,7 +268,7 @@
         <% if (!hayCitasSol) { %>
           <div class="text-center py-4 text-muted">
             <i class="bi bi-check2-circle display-6 d-block mb-2 text-success"></i>
-            ¡Al día! No tienes solicitudes de visita pendientes por confirmar.
+            &iexcl;Al d&iacute;a! No tienes solicitudes de visita pendientes por confirmar.
           </div>
         <% } %>
       </div>

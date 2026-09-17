@@ -194,7 +194,7 @@
         <span class="text-muted small d-block">Precio de <%= negocio %></span>
         <h2 class="fw-bold text-primary mb-1"><%= pesos(precio) %></h2>
         <div class="small text-muted">
-          <span>Matrícula: <code><%= esc(matricula) %></code></span>
+          <span>Matr&iacute;cula: <code><%= esc(matricula) %></code></span>
         </div>
       </div>
     </div>
@@ -262,8 +262,8 @@
           <div class="col-6 col-md-3">
             <div class="p-3 bg-light rounded-3">
               <i class="bi bi-aspect-ratio display-6 text-primary mb-1 d-block"></i>
-              <span class="text-muted small d-block">Área Total</span>
-              <strong class="text-navy fs-5"><%= (int)area %> m²</strong>
+              <span class="text-muted small d-block">&Aacute;rea Total</span>
+              <strong class="text-navy fs-5"><%= (int)area %> m&sup2;</strong>
             </div>
           </div>
           <div class="col-6 col-md-3">
@@ -276,7 +276,7 @@
           <div class="col-6 col-md-3">
             <div class="p-3 bg-light rounded-3">
               <i class="bi bi-droplet display-6 text-primary mb-1 d-block"></i>
-              <span class="text-muted small d-block">Baños</span>
+              <span class="text-muted small d-block">Ba&ntilde;os</span>
               <strong class="text-navy fs-5"><%= banos %></strong>
             </div>
           </div>
@@ -290,7 +290,7 @@
         </div>
         <div class="row g-2 mt-2 pt-2 border-top small text-muted">
           <div class="col-sm-6">
-            <i class="bi bi-layer-forward text-primary me-1"></i> Estrato socioeconómico: <strong><%= estrato %></strong>
+            <i class="bi bi-layer-forward text-primary me-1"></i> Estrato socioecon&oacute;mico: <strong><%= estrato %></strong>
           </div>
           <div class="col-sm-6 text-sm-end">
             <i class="bi bi-calendar3 text-primary me-1"></i> Publicado: <strong><%= fechaPub.substring(0, 10) %></strong>
@@ -300,7 +300,7 @@
 
       <!-- Descripción Detallada -->
       <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4">
-        <h5 class="fw-bold text-navy mb-3"><i class="bi bi-file-text text-primary me-2"></i> Descripción General</h5>
+        <h5 class="fw-bold text-navy mb-3"><i class="bi bi-file-text text-primary me-2"></i> Descripci&oacute;n General</h5>
         <p class="text-secondary leading-relaxed mb-0" style="white-space: pre-line;">
           <%= esc(descripcion) %>
         </p>
@@ -309,7 +309,7 @@
       <!-- ================= 2) CARACTERÍSTICAS Y AMENIDADES CON ICONOS (Relación N:M) ================= -->
       <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4">
         <h5 class="fw-bold text-navy mb-3">
-          <i class="bi bi-stars text-warning me-2"></i> Características y Amenidades de la Propiedad
+          <i class="bi bi-stars text-warning me-2"></i> Caracter&iacute;sticas y Amenidades de la Propiedad
         </h5>
         
         <% if (!listaCaracts.isEmpty()) { %>
@@ -366,7 +366,7 @@
         </ul>
 
         <div class="d-grid gap-2">
-          <a href="https://wa.me/57<%= agenteTelefono.replaceAll("[^0-9]", "") %>?text=Hola,%20deseo%20información%20del%20inmueble%20<%= esc(codigo) %>" 
+          <a href="https://wa.me/57<%= agenteTelefono.replaceAll("[^0-9]", "") %>?text=Hola,%20deseo%20informaci%C3%B3n%20del%20inmueble%20<%= esc(codigo) %>" 
              target="_blank" class="btn btn-success fw-semibold">
             <i class="bi bi-whatsapp me-1"></i> Contactar por WhatsApp
           </a>
@@ -376,17 +376,17 @@
       <!-- ================= 4) BOTÓN PARA AGENDAR VISITA ================= -->
       <div class="card border-0 shadow-sm rounded-4 p-4 bg-navy text-white text-center">
         <i class="bi bi-calendar-check display-4 text-warning mb-3"></i>
-        <h4 class="fw-bold mb-2">¿Deseas conocer este inmueble?</h4>
+        <h4 class="fw-bold mb-2">&iquest;Deseas conocer este inmueble?</h4>
         <p class="text-white-50 small mb-4">
-          Agenda una visita presencial con nuestro asesor sin cruce de horarios y con confirmación inmediata.
+          Agenda una visita presencial con nuestro asesor sin cruce de horarios y con confirmaci&oacute;n inmediata.
         </p>
 
         <% if (esVisitante) { %>
           <div class="alert alert-warning py-2 small text-dark mb-3">
-            <i class="bi bi-info-circle me-1"></i> Inicia sesión o crea tu cuenta de cliente para agendar citas.
+            <i class="bi bi-info-circle me-1"></i> Inicia sesi&oacute;n o crea tu cuenta de cliente para agendar citas.
           </div>
           <a href="<%= ctx %>/login.jsp" class="btn btn-warning fw-bold w-100 py-2 mb-2 text-dark shadow-sm">
-            <i class="bi bi-box-arrow-in-right me-1"></i> Iniciar Sesión para Agendar
+            <i class="bi bi-box-arrow-in-right me-1"></i> Iniciar Sesi&oacute;n para Agendar
           </a>
           <a href="<%= ctx %>/registro.jsp" class="btn btn-outline-light btn-sm w-100">
             <i class="bi bi-person-plus me-1"></i> Registrarse como Cliente
@@ -423,7 +423,8 @@
         </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="post" action="<%= ctx %>/cliente/agendar_cita.jsp">
+      <form method="post" action="<%= ctx %>/cliente/acciones_cita.jsp">
+        <input type="hidden" name="accion" value="agendar">
         <input type="hidden" name="id_propiedad" value="<%= idPropiedad %>">
         <input type="hidden" name="id_agente" value="<%= idAgente %>">
         <div class="modal-body p-4">
